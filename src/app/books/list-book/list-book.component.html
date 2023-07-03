@@ -1,0 +1,61 @@
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-info"> <!-- Modification de bg-light en bg-info -->
+      <div class="container">
+          <a class="navbar-brand btn" (click)="onMenu()">Menu Principal</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                      <a class="nav-link btn" (click)="onClientList()">Clients</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link btn" (click)="onCategoryList()">Categories</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link  btn" (click)="onLoanList()">Prets</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+    </nav>
+</div>
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1 class="mr-3">Liste de Livres</h1>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="title" name="title" placeholder="Recherche par titre">
+    </div>
+    <button class="btn btn-primary" (click)="searchAllBookByTitle()">Rechercher</button>
+  
+    <a class="btn btn-primary" [routerLink]="['/addBook']">Nouvelle Categorie</a>
+  </div>
+    <table class="table table-dark table-hover">
+      <thead>
+        <tr>
+          <th>Titre du livre</th>
+          <th>Date de publication</th>
+          <th>Nombre d'exemplaire</th>
+          <th>Auteur</th>
+          <th>Disponible</th>
+          <th>Actions</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of books">
+          <td>{{book.title}}</td>
+          <td>{{book.createdDate|date:'dd/MM/yyyy'}}</td>
+          <td>{{book.totalExamp}}</td>
+          <td>{{book.author}}</td>
+          <td>{{book.isAvailable}}</td>
+          <td><a  class="btn btn-success">Voir+</a></td>
+          <td><a  class="btn btn-primary">Update</a></td>
+          <td><a (click)="confirmDelete(book.id)" class="btn btn-danger">Delete</a></td>
+        </tr>
+      </tbody>
+    </table>
+</div>

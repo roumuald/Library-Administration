@@ -1,0 +1,37 @@
+<div class="container">
+             <h1>Nouveau Client</h1>
+             <form [formGroup]="customerForm" (ngSubmit)="addCustomer()" class="custom-form">
+              <div class="row mb-3">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Nom" id="firstName" formControlName="firstName" required pattern="^[a-zA-Z0-9àéèç]{1,25}$">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Prénom" id="lastName" formControlName="lastName" required pattern="^[a-zA-Z0-9àéèç]{1,25}$">
+                  <div *ngIf="customerForm.controls['lastName'].invalid && customerForm.controls['lastName'].touched" class="text-danger">
+                    Le nom est obligatoire
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Profession" id="job" formControlName="job">
+                </div>
+                <div class="col">
+                  <input type="email" class="form-control" placeholder="Email" id="email" formControlName="email">
+                  <div *ngIf="customerForm.controls['email'].invalid && customerForm.controls['email'].touched" class="text-danger">
+                    L'email est obligatoire et doit être une adresse email valide.
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Adresse" id="adress" formControlName="adress">
+                  <div *ngIf="customerForm.controls['adress'].invalid && customerForm.controls['adress'].touched" class="text-danger">
+                    L'adresse est obligatoire.
+                  </div>
+                </div>
+              </div> 
+              <button type="submit" class="btn btn-primary">Ajouter</button>
+              <button class="btn btn-danger" [routerLink]="['/allCustomer']">Annuler</button>
+            </form>   
+         </div>

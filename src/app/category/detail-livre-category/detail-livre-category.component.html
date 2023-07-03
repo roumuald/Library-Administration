@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+        <h1 *ngIf="category">Liste de livres de la categorie {{category.label}} </h1>
+        <div *ngFor="let book of books" class="col-12 col-md-3">
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img src="../../../assets/mac.jpg" alt="image pokemon" height="200px" width="260px" >
+                </div>
+                <div class="card-stacked">
+                    <div class="content">
+                        <p><strong>Titre:</strong> {{book.title}}</p>
+                        <p><strong>Date de publication:</strong> {{book.createdDate|date:'dd/MM/yyyy'}}</p>
+                        <p><strong>Nombre d'examplaires :</strong> {{book.totalExamp}}</p>
+                        <p><strong>Auteur:</strong> {{book.author}}</p>
+                        <p><strong>Disponible:</strong> {{book.isAvailable}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p></p>
+<div class="container">
+    <a class="btn btn-danger" [routerLink]="['/allCategory']">Retour</a>
+</div>

@@ -3,10 +3,8 @@ import { BooKDto } from "./book.dto";
 export class CategoryDto{
 
 	 id: number
-
-     code: string
-
-	 label: string;
-
+	 
 	 bookDto:BooKDto[];
+
+	 constructor(public code:string, public label:string){}
 }

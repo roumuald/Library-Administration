@@ -35,6 +35,9 @@ export class ListBookComponent implements OnInit{
   onLoanList(){
     this.router.navigate(['/allCategory']);
   }
+  addBook(){
+    this.router.navigate(['/addBook']);
+  }
 
   getAllBook(){
     this.bookService.getAllBook(this.currentPage, this.pageSize).subscribe((books) => {

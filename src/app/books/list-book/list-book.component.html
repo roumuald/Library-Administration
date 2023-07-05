@@ -22,6 +22,7 @@
       </div>
     </nav>
 </div>
+<p></p>
 <div class="container">
   <div class="d-flex justify-content-between align-items-center">
     <h1 class="mr-3">Liste de Livres</h1>
@@ -29,8 +30,7 @@
       <input type="text" class="form-control" [(ngModel)]="title" name="title" placeholder="Recherche par titre">
     </div>
     <button class="btn btn-primary" (click)="searchAllBookByTitle()">Rechercher</button>
-  
-    <a class="btn btn-primary" [routerLink]="['/addBook']">Nouvelle Categorie</a>
+    <a class="btn btn-primary" [routerLink]="['/addBook']">Nouveau livre</a>
   </div>
     <table class="table table-dark table-hover">
       <thead>

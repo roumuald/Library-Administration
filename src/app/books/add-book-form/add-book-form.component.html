@@ -1,1 +1,82 @@
-<p>add-book-form works!</p>
+<div class="container">
+    <h1>Ajouter un nouveau client</h1>
+    <form (ngSubmit)="addBook(bookForm)" #bookForm="ngForm">
+        <div class="form-group">
+            <label for="title">Titre</label>
+            <input type="text" class="form-control" id="title" 
+            placeholder="Entrez le titre du livre" ngModel required name="title">
+        </div>
+
+        <div class="form-group">
+            <label for="">Date d'edition</label>
+            <mat-form-field class="form-control">
+                <input matInput [matDatepicker]="endDatePicker" placeholder="Selectionnez la date d'edition" 
+                ngModel name="endDate">
+                <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #endDatePicker></mat-datepicker>
+              </mat-form-field>
+        </div>
+        <div class="form-group">
+            <label for="totalExamp">Nombre d'exemplaires</label>
+            <input type="number" name="" id="totalExamp" class="form-control"  
+            placeholder="Entrez le nombre d'examplaire" ngModel name="totalExamp">
+        </div>
+        <div class="form-group">
+            <label for="author">Auteur</label>
+            <input type="text" id="author" class="form-control" placeholder="Nom de l'auteur" 
+            ngModel required name="author">
+        </div>
+        <div class="form-group">
+            <label for="isAvailable">Disponible</label>
+            <select name="isAvailable" id="isAvailable" class="form-control" ngModel required name="isAvailable">
+                <option value="oui">oui</option>
+                <option value="non">non</option>
+            </select>
+        </div>
+        <p></p>
+        <button type="submit" class="btn btn-primary" [disabled]="bookForm.invalid">Ajouter</button>
+        <button class="btn btn-danger" [routerLink]="['/allBook']">Annuler</button>
+    </form>
+    <!-- <form (ngSubmit)="addBook()">
+  
+      <div class="form-group">
+        <label for="code">Titre</label>
+        <input type="text" class="form-control" id="title" formControlName="title" placeholder="Entrez le titre">
+        <div *ngIf="bookForm.get('title')?.invalid && bookForm.get('title')?.touched" class="text-danger">
+          Votre nom est obligatoir et ne doit pas comporter de chiffres
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="label">createdDate</label>
+        <input type="text" class="form-control" id="createdDate" formControlName="createdDate">
+        <div *ngIf="bookForm.get('createdDate')?.invalid && bookForm.get('createdDate')?.touched" class="text-danger">
+          Votre prenom est obligatoir et ne doit pas comporter de chiffres
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="label">Profession</label>
+        <input type="text" class="form-control" id="totalExamp" formControlName="totalExamp" placeholder=" Nombre d'exemplaires">
+      </div>
+  
+      <div class="form-group">
+        <label for="label">Auteur</label>
+        <input type="text" class="form-control" id="author" formControlName="author" placeholder="Nom de l'autheur">
+        <div *ngIf="bookForm.get('email')?.invalid && bookForm.get('email')?.touched" class="text-danger">
+          L'adresse email est obligatoire et au format valide
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="label">Adresse</label>
+        <select name="" id="isAvailable" class="form-control" formControlName="isAvailable">
+            <option value="">oui</option>
+            <option value="">non</option>
+        </select>   
+      </div>
+      <p></p>
+      <button type="submit" class="btn btn-primary" [disabled]="bookForm.invalid">Ajouter</button>
+      <button class="btn btn-danger" [routerLink]="['/allBook']">Annuler</button>
+    </form> -->
+  </div>
+  

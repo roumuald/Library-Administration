@@ -1,37 +1,45 @@
 <div class="container">
-             <h1>Nouveau Client</h1>
-             <form [formGroup]="customerForm" (ngSubmit)="addCustomer()" class="custom-form">
-              <div class="row mb-3">
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="Nom" id="firstName" formControlName="firstName" required pattern="^[a-zA-Z0-9àéèç]{1,25}$">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="Prénom" id="lastName" formControlName="lastName" required pattern="^[a-zA-Z0-9àéèç]{1,25}$">
-                  <div *ngIf="customerForm.controls['lastName'].invalid && customerForm.controls['lastName'].touched" class="text-danger">
-                    Le nom est obligatoire
-                  </div>
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="Profession" id="job" formControlName="job">
-                </div>
-                <div class="col">
-                  <input type="email" class="form-control" placeholder="Email" id="email" formControlName="email">
-                  <div *ngIf="customerForm.controls['email'].invalid && customerForm.controls['email'].touched" class="text-danger">
-                    L'email est obligatoire et doit être une adresse email valide.
-                  </div>
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="Adresse" id="adress" formControlName="adress">
-                  <div *ngIf="customerForm.controls['adress'].invalid && customerForm.controls['adress'].touched" class="text-danger">
-                    L'adresse est obligatoire.
-                  </div>
-                </div>
-              </div> 
-              <button type="submit" class="btn btn-primary">Ajouter</button>
-              <button class="btn btn-danger" [routerLink]="['/allCustomer']">Annuler</button>
-            </form>   
-         </div>
+  <h1>Ajouter un nouveau client</h1>
+  <form (ngSubmit)="addCustomer()" [formGroup]="customerForm">
+
+    <div class="form-group">
+      <label for="code">Nom</label>
+      <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Entrez votre nom">
+      <div *ngIf="customerForm.get('lastName')?.invalid && customerForm.get('lastName')?.touched" class="text-danger">
+        Votre nom est obligatoir et ne doit pas comporter de chiffres
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="label">Prenom</label>
+      <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder=" Entrez votre prenom">
+      <div *ngIf="customerForm.get('firstName')?.invalid && customerForm.get('firstName')?.touched" class="text-danger">
+        Votre prenom est obligatoir et ne doit pas comporter de chiffres
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="label">Profession</label>
+      <input type="text" class="form-control" id="job" formControlName="job" placeholder=" Entrez votre profession">
+    </div>
+
+    <div class="form-group">
+      <label for="label">Email</label>
+      <input type="text" class="form-control" id="email" formControlName="email" placeholder=" Entrez l'email ex:  nnr@gmail.com ">
+      <div *ngIf="customerForm.get('email')?.invalid && customerForm.get('email')?.touched" class="text-danger">
+        L'adresse email est obligatoire et au format valide
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="label">Adresse</label>
+      <input type="text" class="form-control" id="adress" formControlName="adress" placeholder=" Entrez votre adresse">
+      <div *ngIf="customerForm.get('adress')?.invalid && customerForm.get('adress')?.touched" class="text-danger">
+        L'adresse est obligatoire
+      </div>
+    </div>
+    <p></p>
+    <button type="submit" class="btn btn-primary" [disabled]="customerForm.invalid">Ajouter</button>
+    <button class="btn btn-danger" [routerLink]="['/allCustomer']">Annuler</button>
+  </form>
+</div>

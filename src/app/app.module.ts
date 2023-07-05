@@ -15,6 +15,7 @@ import { BookService } from './books/book.service';
 import { LoanService } from './loan/loan.service';
 import {CategoryService} from './category/category.service';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     CategoryModule,
     BookModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [
     CustomerService,

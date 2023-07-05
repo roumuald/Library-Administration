@@ -4,20 +4,10 @@ import { LoanDto } from "./loan.dto";
 export class BooKDto {
 
 	 id:number;
-	
-     title:string;
-	
-	 createdDate:Date;
-	
-	 totalExamp:number;
-	
-	 author:string;
-	
-	 isAvailable:boolean;
-	
+
 	 loanDto:LoanDto[];
 
 	 categoryDto:CategoryDto;
 
-    constructor() { }
+    constructor(public title:string, public createdDate:Date, public totalExamp:number, public author:string, public isAvailable:boolean ) { }
   }

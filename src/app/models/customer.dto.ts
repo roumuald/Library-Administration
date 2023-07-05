@@ -4,17 +4,9 @@ export class CustomerDto{
 
 	id:number;
 	
-    firstName: string;
-	
-	lastName: string;
-	
-	job: string ;
-
-	email:string ;	
-	
-	adress: string;
-	
 	createdDate: Date;
+
+	constructor(public firstName:string, public lastName:string, public job:string, public email:string, public adress:string){}
 	
 	loanDto:LoanDto[];
 

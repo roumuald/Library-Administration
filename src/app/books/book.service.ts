@@ -12,10 +12,13 @@ export class BookService {
 
   constructor(private http:HttpClient) { }
 
+  addBook(bookDto: BooKDto, categoryId: number): Observable<BooKDto> {
+    const url = `${this.apiUrl}/addBook/${categoryId}`;
+    return this.http.post<BooKDto>(url, bookDto);
+  }
   
   getAllBook(page: number, pageSize: number): Observable<BooKDto[]> {
     const url = `${this.apiUrl}/allBook`;
-
     // Utilisez HttpParams pour ajouter les paramètres de pagination
     let params = new HttpParams();
     params = params.append('page', page.toString());

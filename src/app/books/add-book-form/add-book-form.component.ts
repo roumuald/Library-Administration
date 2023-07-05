@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BookService } from '../book.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BooKDto } from 'src/app/models/book.dto';
+import { CategoryService } from 'src/app/category/category.service';
+import { CategoryDto } from 'src/app/models/category.dto';
+import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../../confirmation-dialog/confirmation-dialog.component';
+
+
 
 @Component({
   selector: 'app-add-book-form',
@@ -11,31 +18,56 @@ import { BooKDto } from 'src/app/models/book.dto';
 })
 export class AddBookFormComponent implements OnInit{
 
-  bookForm : FormGroup
+  bookForm: FormGroup;
+  categorys:CategoryDto[];
 
-  endDate: Date;
-  title:string;
-  totalExamp:number;
-  author:string;
-  isAvailable:boolean=false;
-
-  constructor(private bookService:BookService, private router:Router, private route:ActivatedRoute ){}
+  constructor(private bookService:BookService, private router:Router, private categoryService:CategoryService,
+     private formBuilder: FormBuilder, public dialog: MatDialog){}
 
   ngOnInit(): void {
-    
+    this.getAllCategory();
+    this.initialisationFormulaire()
   }
-  addBook(form : NgForm){
+  getAllCategory(){
+     this.categoryService.getAllCategory().subscribe((categorys)=>{
+      this.categorys=categorys;
+    }, (error)=>{
+      console.log('erreur de chargement', error);
+    });
+  }
+
+  initialisationFormulaire(){
+    this.bookForm = this.formBuilder.group({
+      title: ['', [Validators.required]],
+      createdDate: [''],
+      totalExamp: [''],
+      author: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]],
+      isAvailable: ['', [Validators.required]],
+      categoryId: ['', Validators.required]
+    });
+
+  }
+
+  addBook(){
     const bookDto = new BooKDto(
       this.bookForm.value['title'],
+      this.bookForm.value['createdDate'],
       this.bookForm.value['totalExamp'],
       this.bookForm.value['author'],
-      this.bookForm.value['isAvailable'],
-      this.bookForm.value['createdDate']
+      this.bookForm.value['isAvailable'] 
     )
+    const categoryId = this.bookForm.value['categoryId'];
+    this.bookService.addBook(bookDto, categoryId).subscribe((book:BooKDto)=>{
+      console.log('livre enregistrement avec success', book);
+      const dialogRef = this.dialog.open(ConfirmationDialogComponent);
 
-    console.log(form.value)
+      dialogRef.afterClosed().subscribe(() => {
+    
+      });
+      this.router.navigate(['/allBook']);
+    }, (error)=>{
+      console.log('echeck d\'enregistrement', error);
+      console.log(bookDto);
+    });
   }
-
-  
-
 }

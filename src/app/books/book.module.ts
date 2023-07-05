@@ -10,6 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // declaration de differentes routes
 const routeBook: Routes =[
@@ -35,7 +36,8 @@ const routeBook: Routes =[
     BrowserModule,
     MatDatepickerModule,
     MatInputModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ReactiveFormsModule
   ],
 })
 export class BookModule { }

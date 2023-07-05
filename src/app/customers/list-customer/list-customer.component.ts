@@ -53,7 +53,6 @@ export class ListCustomerComponent implements OnInit{
       console.error(error);
     });
   }
-
   confirmDelete(customerId: number): void {
     if (confirm('Êtes-vous sûr de vouloir supprimer ce client ?')) {
       this.deleteCustomer(customerId);
@@ -70,7 +69,6 @@ export class ListCustomerComponent implements OnInit{
       }
     );
   }
-
   detailCustomer(customer: CustomerDto){
     this.route.navigate(['/detailCustomer',customer.id]);
   }

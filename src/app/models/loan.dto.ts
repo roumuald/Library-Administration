@@ -2,19 +2,17 @@ import { BooKDto } from "./book.dto";
 import { CustomerDto } from "./customer.dto";
 import { LoanStatus } from "./loanStatus";
 
-export interface LoanDto{
+export class LoanDto{
 
 	 id:number;
 	
      startDate :Date;
-	
-	 endDate: Date;
-
-     status:LoanStatus;
-	
+	 
 	 customerDto:CustomerDto;
     
 	 bookDto:BooKDto;
+
+	 constructor(public endDate: Date, public status:LoanStatus){}
 
 
 }

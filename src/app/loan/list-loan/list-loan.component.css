@@ -1,0 +1,19 @@
+.form-group {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  label {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  select {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  button {
+    display: inline-block;
+  }
+  

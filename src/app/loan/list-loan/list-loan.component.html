@@ -29,11 +29,12 @@
       <div class="form-group">
         <input type="email" class="form-control" name="email" placeholder="Recherche par email" [(ngModel)]="email">
       </div>
-      <label for="">status</label>
-      <select id="categoryId" formControlName="categoryId" >
-        <option value="">{{loan.status}}</option>
-      </select>
-      <button class="btn btn-primary" >Rechercher</button>
+        <label for="status">Statut:</label>
+        <select id="status" name="status" [(ngModel)]="status">
+          <option value="OPEN">Ouvert</option>
+          <option value="CLOSE">Fermé</option>
+        </select>
+      <button class="btn btn-primary" (click)="getallOpenLoansOfThisCustomer()">Rechercher</button>
       <a class="btn btn-primary" [routerLink]="['/addLoan']">Effectuer un Pret</a>
     </div>
       <table class="table table-dark table-hover">

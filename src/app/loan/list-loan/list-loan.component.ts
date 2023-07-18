@@ -5,6 +5,7 @@ import { CustomerService } from 'src/app/customers/customer.service';
 import { CustomerDto } from 'src/app/models/customer.dto';
 import { ActivatedRoute } from '@angular/router';
 import { BooKDto } from 'src/app/models/book.dto';
+import { LoanStatus } from 'src/app/models/loanStatus';
 
 @Component({
   selector: 'app-list-loan',
@@ -15,7 +16,7 @@ export class ListLoanComponent implements OnInit{
 
   loans:LoanDto[];
   email:string
-  loan:LoanDto
+  status:LoanStatus
 
   constructor(private loanService:LoanService, private customerService:CustomerService, private route:ActivatedRoute){}
 
@@ -45,17 +46,18 @@ confirmCloseLoan(bookId: number, customerId: number): void{
   }
 }
 
-// getallOpenLoansOfThisCustomer(){
-//   if(this.email&&status){
-//     this.loanService.getallOpenLoansOfThisCustomer(this.email, status).subscribe((loans)=>{
-//       this.loans=loans;
-//     }, (error)=>{
-//       console.log("erreur de chargement"+ error);
-//     });
-//   }else{
-//     this.getAllLoan();
-//   }
-//   }
+getallOpenLoansOfThisCustomer(){
+  console.log("je suis la")
+  if(this.email&&this.status){
+    this.loanService.getallOpenLoansOfThisCustomer(this.email, this.status).subscribe((loans)=>{
+      this.loans=loans;
+    }, (error)=>{
+      console.log("erreur de chargement"+ error);
+    });
+    }else{
+      this.getAllLoan();
+    }
+  }
   
 
 }

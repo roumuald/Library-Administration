@@ -29,7 +29,11 @@
         <tr>
           <th>Client depuis le</th>
           <td>{{customer.createdDate|date:'dd/MM/yyyy'}}</td>
-          </tr>
+        </tr>
+        <tr>
+          <th></th>
+          <td><a [routerLink]="['/allLoanByCustomer', customer.id]" class="btn btn-success">pret en cours</a></td>
+        </tr>
       </tbody>
     </table>
     <a (click)="onClientList()" class="btn btn-danger">Retour</a>

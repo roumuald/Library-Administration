@@ -14,7 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { BookService } from './books/book.service';
 import { LoanService } from './loan/loan.service';
 import {CategoryService} from './category/category.service';
-import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';

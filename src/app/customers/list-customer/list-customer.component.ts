@@ -11,11 +11,9 @@ import { CustomerDto } from 'src/app/models/customer.dto';
 export class ListCustomerComponent implements OnInit{
 
   customers: CustomerDto[] = [];
-  //currentPage: number = 1;
-  //pageSize: number = 10; // Nombre d'éléments par page
-  //totalItems: number = 0; // Nombre total d'éléments
-  customer: CustomerDto|null =null;
+  customer: CustomerDto;
   customerId:number = this.router.snapshot.params['customerId'];
+  email:string;
 
   // injection par constructeur
   constructor(private customerService:CustomerService, private route:Router, private router:ActivatedRoute){}
@@ -35,7 +33,7 @@ export class ListCustomerComponent implements OnInit{
     this.route.navigate(['/allCategory']);
   }
   onLoanList(){
-    this.route.navigate(['/allCategory']);
+    this.route.navigate(['/allLoan']);
   }
 
   // methode qui communique avec le service
@@ -46,13 +44,17 @@ export class ListCustomerComponent implements OnInit{
       console.error(error);
     });
   }
-  getCustomerByEmail(email: string) {
-    this.customerService.getCustomerByEmail(email).subscribe((result) => {
-      this.customer = result;
-    }, (error) => {
-      console.error(error);
-    });
+
+  getCustomerByEmail(): void {
+    if(this.email){
+      this.customerService.getCustomerByEmail(this.email).subscribe((result) => {
+        this.customer = result;
+    }, (error) => { console.error(error); });
+    }else{
+      this.getAllCustomers();
+    }
   }
+
   confirmDelete(customerId: number): void {
     if (confirm('Êtes-vous sûr de vouloir supprimer ce client ?')) {
       this.deleteCustomer(customerId);
@@ -69,6 +71,7 @@ export class ListCustomerComponent implements OnInit{
       }
     );
   }
+
   detailCustomer(customer: CustomerDto){
     this.route.navigate(['/detailCustomer',customer.id]);
   }
@@ -76,10 +79,4 @@ export class ListCustomerComponent implements OnInit{
   updateCustomer(customer:CustomerDto){
     this.route.navigate(['/updatePokemon', customer.id])
   }
-
-  // onPageChange(page: number) {
-  //   this.currentPage = page;
-  //   this.getAllCustomers();
-  // }
-
 }

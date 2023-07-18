@@ -13,18 +13,14 @@ export class DetailCustomerComponent implements OnInit{
   customer: CustomerDto;
 
   constructor(private customerService:CustomerService, private router:Router, private route:ActivatedRoute){}
+  
   ngOnInit(): void {
     const customerId = this.route.snapshot.params['customerId'];
-    this.customerService.getOnecustomer(customerId).subscribe(
-      (customer: CustomerDto) => {
-        console.log(customer);
+    this.customerService.getOnecustomer(customerId).subscribe((customer) => {
         this.customer = customer;
-      },
-      (error) => {
+      }, (error) => {
         console.log(error);
-        
-      }
-    );
+      });
   }
 
   onClientList(){

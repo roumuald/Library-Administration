@@ -17,17 +17,17 @@ export class BookService {
     return this.http.post<BooKDto>(url, bookDto);
   }
   
-  getAllBook(page: number, pageSize: number): Observable<BooKDto[]> {
-    const url = `${this.apiUrl}/allBook`;
+  getAllBook(/*page: number, pageSize: number*/): Observable<BooKDto[]> {
+    const url = `${this.apiUrl}/allBooks`;
     // Utilisez HttpParams pour ajouter les paramètres de pagination
-    let params = new HttpParams();
-    params = params.append('page', page.toString());
-    params = params.append('pageSize', pageSize.toString());
-    return this.http.get<BooKDto[]>(url, {params});
+    //let params = new HttpParams();
+    //params = params.append('page', page.toString());
+    //params = params.append('pageSize', pageSize.toString());
+    return this.http.get<BooKDto[]>(url/*, {params}*/);
   }
 
   searchAllBookByTitle(title:string): Observable<BooKDto[]>{
-    const url= `${this.apiUrl}/allBookByTitle/${title}`
+    const url= `${this.apiUrl}/allBookByTitlee/${title}`
     return this.http.get<BooKDto[]>(url);
   }
 

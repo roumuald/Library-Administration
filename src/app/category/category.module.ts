@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailLivreCategoryComponent } from './detail-livre-category/detail-livre-category.component';
+import { MatIconModule } from '@angular/material/icon';
 
 // declaration de differentes routes
 const routeCategory: Routes =[
@@ -29,7 +30,8 @@ const routeCategory: Routes =[
     CommonModule,
     RouterModule.forChild(routeCategory),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
   ],
 })
 export class CategoryModule { }

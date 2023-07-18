@@ -28,7 +28,6 @@ export class ListCategoryComponent implements OnInit{
   onBookList(){
     this.router.navigate(['/allBook'])
   }
-
   getAllCategory(){
     this.categoryService.getAllCategory().subscribe((categorys)=>{
       this.categorys=categorys

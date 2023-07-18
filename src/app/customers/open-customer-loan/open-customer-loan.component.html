@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <h1 class="mr-3">Pret Effectuer par le client {{customer.lastName}}</h1>
+    </div>
+      <table class="table table-dark table-hover">
+        <thead>
+          <tr>
+            <th>Date de debut</th>
+            <th>Date de fin</th>
+            <th>Status</th>
+            <th>Livre</th>
+            <th>Action</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let loan of loans">
+            <td>{{loan.startDate|date:'dd/MM/yyyy hh:mm:ss'}}</td>
+            <td>{{loan.endDate|date:'dd/MM/yyyy hh:mm:ss'}}</td>
+            <td>{{loan.status}}</td>
+            <td>{{loan.book? loan.book.title: ''}}</td>
+
+            <td><a (click)="confirmCloseLoan(loan.book.id, loan.customer.id)" class="btn btn-danger">Cloturer le pret</a></td>
+            <td><a (click)="onOpenLoan(loan.book.id, loan.customer.id)" class="btn btn-primary">Ouvrir le pret</a></td>
+            <!-- <td>
+              <select name="" id="">
+                <option value=""><a (click)="onOpenLoan(loan.book.id, loan.customer.id)" class="btn btn-primary">Ouvrir le pret</a></option>
+                <option value=""><a (click)="confirmCloseLoan(loan.book.id, loan.customer.id)" class="btn btn-danger">Cloturer le pret</a></option>
+              </select>
+            </td> -->
+          </tr>
+        </tbody>
+      </table>
+      <a class="btn btn-danger" [routerLink]="['/detailCustomer', customer.id]">Retour</a>
+  </div>
+  

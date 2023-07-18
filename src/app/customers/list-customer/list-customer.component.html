@@ -1,5 +1,5 @@
 <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-info"> <!-- Modification de bg-light en bg-info -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
       <div class="container">
           <a class="navbar-brand btn" (click)="onMenu()">Menu Principal</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -27,15 +27,16 @@
   <div class="d-flex justify-content-between align-items-center">
     <h1 class="mr-3">Liste de Clients</h1>
     <div class="form-group">
-      <input type="text" class="form-control" name="label" placeholder="Recherche par label">
+      <input type="text" class="form-control" [(ngModel)]="email" name="email" placeholder="Recherche par email">
     </div>
-    <button class="btn btn-primary" >Rechercher</button>
+    <button class="btn btn-primary" (click)="getCustomerByEmail()">Rechercher</button>
+
     <a class="btn btn-primary" [routerLink]="['/addCustomer']">Nouveau client</a>
   </div>
     <table class="table table-dark table-hover">
       <thead>
         <tr>
-          <th>Id</th>
+          <th>Identifiant</th>
           <th>Nom</th>
           <th>Email</th>
           <th>Adresse</th>
@@ -45,20 +46,31 @@
           <th></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="customers">
         <tr *ngFor="let customer of customers">
           <td>{{customer.id}}</td>
           <td>{{customer.lastName}}</td>
           <td>{{customer.email}}</td>
           <td>{{customer.adress}}</td>
           <td>{{customer.createdDate |date:'dd/MM/yyyy'}}</td>
-          <td><a [routerLink]="['/detailCustomer', customer.id]" class="btn btn-success">Voir+</a></td>
+          <td><a [routerLink]="['/detailCustomer', customer.id]" class="btn btn-success">Detail</a></td>
+          <td><a (click)="updateCustomer(customer)" class="btn btn-primary">Update</a></td>
+          <td><a (click)="confirmDelete(customer.id)" class="btn btn-danger">Delete</a></td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="customer">
+        <tr>
+          <td>{{customer.id}}</td>
+          <td>{{customer.lastName}}</td>
+          <td>{{customer.email}}</td>
+          <td>{{customer.adress}}</td>
+          <td>{{customer.createdDate |date:'dd/MM/yyyy'}}</td>
+          <td><a [routerLink]="['/detailCustomer', customer.id]" class="btn btn-success">Detail</a></td>
           <td><a (click)="updateCustomer(customer)" class="btn btn-primary">Update</a></td>
           <td><a (click)="confirmDelete(customer.id)" class="btn btn-danger">Delete</a></td>
         </tr>
       </tbody>
     </table>
-    <!-- <h1 *ngIf="!customer" class="text-center">Aucun client a afficher</h1> -->
 </div>
 
 <!-- <pagination-controls (pageChange)="onPageChange($event)" [pageSize]="pageSize" [totalItems]="totalItems"></pagination-controls> -->

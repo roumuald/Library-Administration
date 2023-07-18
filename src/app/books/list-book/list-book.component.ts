@@ -33,14 +33,14 @@ export class ListBookComponent implements OnInit{
     this.router.navigate(['/allCategory']);
   }
   onLoanList(){
-    this.router.navigate(['/allCategory']);
+    this.router.navigate(['/allLoan']);
   }
   addBook(){
     this.router.navigate(['/addBook']);
   }
 
   getAllBook(){
-    this.bookService.getAllBook(this.currentPage, this.pageSize).subscribe((books) => {
+    this.bookService.getAllBook(/*this.currentPage, this.pageSize*/).subscribe((books) => {
       this.books = books;
     }, (error) => {
       // Une erreur s'est produite lors de la récupération des clients

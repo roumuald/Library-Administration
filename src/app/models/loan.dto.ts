@@ -7,12 +7,14 @@ export class LoanDto{
 	 id:number;
 	
      startDate :Date;
-	 
-	 customerDto:CustomerDto;
-    
-	 bookDto:BooKDto;
 
-	 constructor(public endDate: Date, public status:LoanStatus){}
+	 status:LoanStatus
+
+	 customer:CustomerDto;
+    
+	 book:BooKDto;
+
+	 constructor(public endDate: Date){}
 
 
 }

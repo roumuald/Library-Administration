@@ -7,7 +7,7 @@ export class BooKDto {
 
 	 loanDto:LoanDto[];
 
-	 categoryDto:CategoryDto;
+	 category:CategoryDto;
 
     constructor(public title:string, public createdDate:Date, public totalExamp:number, public author:string, public isAvailable:boolean ) { }
   }

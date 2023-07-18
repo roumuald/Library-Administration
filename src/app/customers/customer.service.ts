@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { CustomerDto } from '../models/customer.dto';
+import { LoanDto } from '../models/loan.dto';
 
 
 @Injectable({
@@ -39,6 +40,11 @@ export class CustomerService {
   getOnecustomer(customerId:number): Observable<CustomerDto>{
     const url = `${this.apiUrl}/getOnCustomer/${customerId}`;
     return this.http.get<CustomerDto>(url);
+  }
+
+  getAllOpenLoanByCustomerId(customerId:number): Observable<LoanDto[]>{
+    const url =`${this.apiUrl}/allLoanByCustomer/${customerId}`;
+    return this.http.get<LoanDto[]>(url);
   }
   
 }

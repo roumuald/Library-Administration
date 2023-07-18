@@ -30,7 +30,10 @@ export class AddCategoryFormComponent implements OnInit{
   }
   
   addCategory(): void {
-    const categoryDto = new CategoryDto(this.categoryForm.value['code'], this.categoryForm.value['label']);
+    const categoryDto = new CategoryDto(
+      this.categoryForm.value['code'], 
+      this.categoryForm.value['label']);
+      
     this.categoryService.addCategory(categoryDto ).subscribe((newCategory:CategoryDto)=>
       {
         console.log('categorie ajouter :', newCategory);

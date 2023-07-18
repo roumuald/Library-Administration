@@ -62,7 +62,6 @@ export class AddBookFormComponent implements OnInit{
       const dialogRef = this.dialog.open(ConfirmationDialogComponent);
 
       dialogRef.afterClosed().subscribe(() => {
-    
       });
       this.router.navigate(['/allBook']);
     }, (error)=>{

@@ -1,30 +1,70 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoanService } from '../loan.service';
 import { LoanDto } from 'src/app/models/loan.dto';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, Validators, FormBuilder  } from '@angular/forms';
+import { CustomerService } from 'src/app/customers/customer.service';
+import { BookService } from 'src/app/books/book.service';
+import { CustomerDto } from 'src/app/models/customer.dto';
+import { BooKDto } from 'src/app/models/book.dto';
 
 @Component({
   selector: 'app-add-loan',
   templateUrl: './add-loan.component.html',
   styleUrls: ['./add-loan.component.css']
 })
-export class AddLoanComponent {
+export class AddLoanComponent implements OnInit{
 
-  // loanDto: LoanDto = {
-  //   // Initialisez les propriétés du prêt ici (customerName, bookTitle, etc.)
-  // };
+  loanForm: FormGroup;
+  customers:CustomerDto[];
+  books:BooKDto[];
 
-  constructor(private loanService: LoanService, private route:ActivatedRoute) { }
+  constructor(private loanService: LoanService, private route:ActivatedRoute, 
+    private customerService: CustomerService, private bookService:BookService, private router:Router,
+    private formBuilder: FormBuilder /*public dialog: MatDialog*/) { }
 
-  // saveLoan(): void {
-  //   const customerId = 123; // Remplacez par l'ID du client approprié
-  //   const bookId = 456; // Remplacez par l'ID du livre approprié
+  ngOnInit(): void {
+    this.getAllCustomer();
+    this.getAllBook();
+    this.initialisationFormulaire();
+  }
 
-  //   this.loanService.saveLoan(this.loanDto, customerId, bookId).subscribe((response: LoanDto) => {
-  //     console.log('Prêt enregistré avec succès !', response)
-  //   },(error)=>{
-  //     console.log('echec de creation de pret', error);
-  //   });
-  // }
+  initialisationFormulaire(){
+    this.loanForm = this.formBuilder.group({
+      endDate: ['', [Validators.required]],
+      customerId: ['', [Validators.required]],
+      bookId: ['', [Validators.required]]
+    });
+  }
+
+  getAllCustomer(){
+    this.customerService.getAllCustomers().subscribe((customers)=>{
+      this.customers=customers;
+    }, (error)=>{
+      console.log('erreur lors du chargement de client', error); 
+    })
+  }
+  getAllBook(){
+    this.bookService.getAllBook().subscribe((books)=>{
+      this.books=books;
+    }, (error)=>{
+      console.log('erreur de chargement de livre', error);
+    })
+  }
+
+  saveLoan(): void {
+    const loanDto = new LoanDto(
+      this.loanForm.value['endDate']
+    )
+    const customerId = this.loanForm.value['customerId'];
+    const bookId = this.loanForm.value['bookId'];
+
+    this.loanService.saveLoan(loanDto, customerId, bookId).subscribe((response: LoanDto) => {
+      console.log('Prêt enregistré avec succès !', response)
+      this.router.navigate(['/allLoan']);
+    },(error)=>{
+      console.log('echec de creation de pret', error);
+    });
+  }
 }
   

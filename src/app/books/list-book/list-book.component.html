@@ -40,8 +40,8 @@
           <th>Nombre d'exemplaire</th>
           <th>Auteur</th>
           <th>Disponible</th>
+          <th>Categorie associe</th>
           <th>Actions</th>
-          <th></th>
           <th></th>
         </tr>
       </thead>
@@ -52,7 +52,7 @@
           <td>{{book.totalExamp}}</td>
           <td>{{book.author}}</td>
           <td>{{book.isAvailable}}</td>
-          <td><a  class="btn btn-success">Voir+</a></td>
+          <td>{{book.category.label}}</td>
           <td><a  class="btn btn-primary">Update</a></td>
           <td><a (click)="confirmDelete(book.id)" class="btn btn-danger">Delete</a></td>
         </tr>

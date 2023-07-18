@@ -5,8 +5,9 @@ import { DetailCustomerComponent } from './detail-customer/detail-customer.compo
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { AddCustomerFormComponent } from './add-customer-form/add-customer-form.component';
 import { RouterModule, Routes } from '@angular/router';
-import { CustomerService } from './customer.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { OpenCustomerLoanComponent } from './open-customer-loan/open-customer-loan.component';
 
 //declaration de differentes routes
 const routeCustomer: Routes =[
@@ -14,7 +15,8 @@ const routeCustomer: Routes =[
     {path: 'addCustomer', component: AddCustomerFormComponent},
     {path: 'allCustomer', component: ListCustomerComponent},
     {path: 'detailCustomer/:customerId', component: DetailCustomerComponent},
-    {path: 'customerByEmail/:email', component: ListCustomerComponent}
+    {path: 'customerByEmail/:email', component: ListCustomerComponent},
+    {path: 'allLoanByCustomer/:customerId', component: OpenCustomerLoanComponent}
  ];
 
 @NgModule({
@@ -22,13 +24,15 @@ const routeCustomer: Routes =[
     ListCustomerComponent,
     DetailCustomerComponent,
     EditCustomerComponent,
-    AddCustomerFormComponent
+    AddCustomerFormComponent,
+    OpenCustomerLoanComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routeCustomer),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
   ]
 })
 export class CustomerModule { }

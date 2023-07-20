@@ -35,5 +35,4 @@ export class DetailLivreCategoryComponent implements OnInit{
       console.log(error);
     })
   }
-
 }

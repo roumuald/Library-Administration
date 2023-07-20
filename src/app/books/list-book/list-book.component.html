@@ -46,7 +46,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let book of books">
+        <tr *ngFor="let book of books | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
           <td>{{book.title}}</td>
           <td>{{book.createdDate|date:'dd/MM/yyyy'}}</td>
           <td>{{book.totalExamp}}</td>
@@ -58,4 +58,11 @@
         </tr>
       </tbody>
     </table>
+</div>
+<div class="container">
+  <div class="pagination">
+    <button class="btn btn-danger" [disabled]="currentPage === 1" (click)="onPageChange(currentPage - 1)">Précédent</button>
+    <span class="btn btn-success">{{ currentPage }}</span>
+    <button class="btn btn-danger" (click)="onPageChange(currentPage + 1)">Suivant</button>
+  </div>
 </div>

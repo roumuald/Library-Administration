@@ -47,7 +47,7 @@
         </tr>
       </thead>
       <tbody *ngIf="customers">
-        <tr *ngFor="let customer of customers">
+        <tr *ngFor="let customer of customers | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
           <td>{{customer.id}}</td>
           <td>{{customer.lastName}}</td>
           <td>{{customer.email}}</td>
@@ -58,7 +58,7 @@
           <td><a (click)="confirmDelete(customer.id)" class="btn btn-danger">Delete</a></td>
         </tr>
       </tbody>
-      <tbody *ngIf="customer">
+      <!-- <tbody *ngIf="customer">
         <tr>
           <td>{{customer.id}}</td>
           <td>{{customer.lastName}}</td>
@@ -69,10 +69,14 @@
           <td><a (click)="updateCustomer(customer)" class="btn btn-primary">Update</a></td>
           <td><a (click)="confirmDelete(customer.id)" class="btn btn-danger">Delete</a></td>
         </tr>
-      </tbody>
+      </tbody> -->
     </table>
 </div>
-
-<!-- <pagination-controls (pageChange)="onPageChange($event)" [pageSize]="pageSize" [totalItems]="totalItems"></pagination-controls> -->
-
+<div class="container">
+  <div class="pagination">
+    <button class="btn btn-danger" [disabled]="currentPage === 1" (click)="onPageChange(currentPage - 1)">Précédent</button>
+    <span class="btn btn-success">{{ currentPage }}</span>
+    <button class="btn btn-danger" (click)="onPageChange(currentPage + 1)">Suivant</button>
+  </div>
+</div>
 

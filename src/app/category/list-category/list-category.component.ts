@@ -13,9 +13,13 @@ export class ListCategoryComponent implements OnInit{
   category:CategoryDto|null=null;
   id:number = this.route.snapshot.params['id'];
   label: string;
+  currentPage: number;
+  itemsPerPage: number;
 
   constructor(private router:Router, private categoryService:CategoryService, private route:ActivatedRoute){}
   ngOnInit(): void {
+    this.currentPage=1;
+    this.itemsPerPage=7;
     this.getAllCategory();
   }
 
@@ -34,7 +38,6 @@ export class ListCategoryComponent implements OnInit{
     }, (error)=>{
       console.log(error);
     });
-  
   }
 
   searchCategoryByLabel(): void {
@@ -55,12 +58,17 @@ export class ListCategoryComponent implements OnInit{
       this.deleteCategory(code);
     }
   }
+
   deleteCategory(id:number){
     this.categoryService.deleteCategory(id).subscribe(()=>{
       console.log('categorie supprimee avec success');
     }, (error)=>{
         console.log("echec de suppression", error);
     });
+  }
+  
+  onPageChange(pageNumber: number): void {
+    this.currentPage = pageNumber;
   }
 
 }

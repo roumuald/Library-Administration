@@ -1,38 +1,38 @@
-<div class="container" >
-    <h1>Detail de {{customer.firstName}} </h1>
+<div class="container" *ngIf="customer">
+    <h1 >Detail de {{customer.firstName}} </h1>
     <table class="table table-dark table-hover table-nowrap">
       <tbody>
         <tr >
             <th>Identifiant</th>
-            <td>{{customer.id}}</td>
+            <td >{{customer.id}}</td>
           </tr>
         <tr >
           <th>Nom</th>
-          <td>{{customer.lastName}}</td>
+          <td >{{customer.lastName}}</td>
         </tr>
         <tr >
           <th>Prénom</th>
-          <td>{{customer.firstName}}</td>
+          <td >{{customer.firstName}}</td>
         </tr>
         <tr >
           <th>Profession</th>
-          <td>{{customer.job}}</td>
+          <td >{{customer.job}}</td>
         </tr>
         <tr >
           <th>Email</th>
-          <td>{{customer.email}}</td>
+          <td >{{customer.email}}</td>
         </tr>
         <tr >
             <th>Adresse</th>
-            <td>{{customer.adress}}</td>
+            <td >{{customer.adress}}</td>
           </tr>
         <tr>
           <th>Client depuis le</th>
-          <td>{{customer.createdDate|date:'dd/MM/yyyy'}}</td>
+          <td > {{customer.createdDate|date:'dd/MM/yyyy'}}</td>
         </tr>
         <tr>
           <th></th>
-          <td><a [routerLink]="['/allLoanByCustomer', customer.id]" class="btn btn-success">pret en cours</a></td>
+          <td ><a [routerLink]="['/allLoanByCustomer', customer.id]" class="btn btn-success">pret en cours</a></td>
         </tr>
       </tbody>
     </table>

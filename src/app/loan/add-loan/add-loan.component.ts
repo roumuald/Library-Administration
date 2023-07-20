@@ -58,13 +58,17 @@ export class AddLoanComponent implements OnInit{
     )
     const customerId = this.loanForm.value['customerId'];
     const bookId = this.loanForm.value['bookId'];
-
-    this.loanService.saveLoan(loanDto, customerId, bookId).subscribe((response: LoanDto) => {
-      console.log('Prêt enregistré avec succès !', response)
-      this.router.navigate(['/allLoan']);
-    },(error)=>{
-      console.log('echec de creation de pret', error);
-    });
+    const endDate = new Date(loanDto.endDate);
+    if(endDate > new Date()){
+      this.loanService.saveLoan(loanDto, customerId, bookId).subscribe((response: LoanDto) => {
+        console.log('Prêt enregistré avec succès !', response)
+        this.router.navigate(['/allLoan']);
+      },(error)=>{
+        console.log('echec de creation de pret', error);
+      });
+    }else{
+      alert("la date de fin doit etre superieur ou egale a la date d'aujourd'hui");
+    } 
   }
 }
   

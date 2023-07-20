@@ -21,11 +21,12 @@ export class CustomerService {
   getAllCustomers(): Observable<CustomerDto[]> {
     const url = `${this.apiUrl}/allCustomer`;
     return this.http.get<CustomerDto[]>(url);
-    // Utilisez HttpParams pour ajouter les paramètres de pagination
-    // let params = new HttpParams();
-    // params = params.append('page', page.toString());
-    // params = params.append('pageSize', pageSize.toString());
   }
+
+  // getAllCustomer():Observable<any>{
+  //   const url = `${this.apiUrl}/allCustomer`;
+  //   return this.http.get<any>(url);
+  // }
 
   getCustomerByEmail(email: string): Observable<CustomerDto> {
     const url = `${this.apiUrl}/customerByEmail/${email}`;

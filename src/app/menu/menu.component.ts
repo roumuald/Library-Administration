@@ -20,7 +20,7 @@ export class MenuComponent {
   this.router.navigate(['/allCustomer']);
   }
   onListLoan(){
-  this.router.navigate(['/allBook']);
+  this.router.navigate(['/allLoan']);
   }
 
 }

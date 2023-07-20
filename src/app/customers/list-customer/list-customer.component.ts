@@ -10,16 +10,21 @@ import { CustomerDto } from 'src/app/models/customer.dto';
 })
 export class ListCustomerComponent implements OnInit{
 
-  customers: CustomerDto[] = [];
+  customers: CustomerDto[];
   customer: CustomerDto;
   customerId:number = this.router.snapshot.params['customerId'];
   email:string;
+  itemsPerPage: number;
+  currentPage: number;
 
   // injection par constructeur
   constructor(private customerService:CustomerService, private route:Router, private router:ActivatedRoute){}
 
   // charge les donnees au demarrage de l'application
   ngOnInit() {
+    this.itemsPerPage = 7;
+    this.currentPage = 1;
+
     this.getAllCustomers(); 
   }
   // methode de navigation 
@@ -79,4 +84,9 @@ export class ListCustomerComponent implements OnInit{
   updateCustomer(customer:CustomerDto){
     this.route.navigate(['/updatePokemon', customer.id])
   }
+
+  onPageChange(pageNumber: number): void {
+    this.currentPage = pageNumber;
+  }
 }
+

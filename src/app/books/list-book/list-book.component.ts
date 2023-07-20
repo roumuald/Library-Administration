@@ -10,16 +10,17 @@ import { BooKDto } from 'src/app/models/book.dto';
 })
 export class ListBookComponent implements OnInit{
 
-  books: BooKDto[] = [];
-  currentPage: number = 1;
-  pageSize: number = 10; // Nombre d'éléments par page
-  totalItems: number = 0; // Nombre total d'éléments
+  books: BooKDto[];
+  currentPage: number;
+  itemsPerPage: number;
   title:string;
   bookId:number= this.route.snapshot.params['id'];
 
   constructor(private router:Router, private bookService:BookService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
+    this.currentPage=1;
+    this.itemsPerPage=7;
     this.getAllBook();
   }
 
@@ -73,4 +74,7 @@ export class ListBookComponent implements OnInit{
     });
   }
 
+  onPageChange(pageNumber: number): void {
+    this.currentPage = pageNumber;
+  }
 }

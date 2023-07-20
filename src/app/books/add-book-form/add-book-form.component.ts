@@ -20,6 +20,8 @@ export class AddBookFormComponent implements OnInit{
 
   bookForm: FormGroup;
   categorys:CategoryDto[];
+  book:BooKDto;
+  //currentDate: Date = new Date();
 
   constructor(private bookService:BookService, private router:Router, private categoryService:CategoryService,
      private formBuilder: FormBuilder, public dialog: MatDialog){}
@@ -39,7 +41,7 @@ export class AddBookFormComponent implements OnInit{
   initialisationFormulaire(){
     this.bookForm = this.formBuilder.group({
       title: ['', [Validators.required]],
-      createdDate: [''],
+      createdDate: ['',[Validators.required]],
       totalExamp: [''],
       author: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]],
       isAvailable: ['', [Validators.required]],
@@ -57,16 +59,21 @@ export class AddBookFormComponent implements OnInit{
       this.bookForm.value['isAvailable'] 
     )
     const categoryId = this.bookForm.value['categoryId'];
-    this.bookService.addBook(bookDto, categoryId).subscribe((book:BooKDto)=>{
-      console.log('livre enregistrement avec success', book);
-      const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+    const createdDate = new Date(bookDto.createdDate);
 
-      dialogRef.afterClosed().subscribe(() => {
+    if(createdDate < new Date()){
+      this.bookService.addBook(bookDto, categoryId).subscribe((book:BooKDto)=>{
+        console.log('livre enregistrement avec success', book);
+        const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+  
+        dialogRef.afterClosed().subscribe(() => {
+        });
+        this.router.navigate(['/allBook']);
+      }, (error)=>{
+        console.log('echeck d\'enregistrement', error);
       });
-      this.router.navigate(['/allBook']);
-    }, (error)=>{
-      console.log('echeck d\'enregistrement', error);
-      console.log(bookDto);
-    });
+    }else{
+      alert("la date de creation doit etre inferieur ou egale a la date du jour");
+    }
   }
 }

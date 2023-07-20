@@ -17,10 +17,16 @@ export class ListLoanComponent implements OnInit{
   loans:LoanDto[];
   email:string
   status:LoanStatus
+  isLoading = false;
+
+  itemsPerPage: number;
+  currentPage: number;
 
   constructor(private loanService:LoanService, private customerService:CustomerService, private route:ActivatedRoute){}
 
   ngOnInit(): void {
+    this.itemsPerPage = 7;
+    this.currentPage = 1;
     this.getAllLoan();
   }
 
@@ -46,18 +52,28 @@ confirmCloseLoan(bookId: number, customerId: number): void{
   }
 }
 
+confirmOpenLoan(customerId:number, bookId:number){
+  if(confirm("voulez vous vraiment ouvrir ce pret?")){
+    this.onOpenLoan(customerId, bookId);
+  }
+}
+
 getallOpenLoansOfThisCustomer(){
-  console.log("je suis la")
   if(this.email&&this.status){
+    this.isLoading=true;
     this.loanService.getallOpenLoansOfThisCustomer(this.email, this.status).subscribe((loans)=>{
-      this.loans=loans;
+      this.loans=loans; 
     }, (error)=>{
       console.log("erreur de chargement"+ error);
     });
+    this.isLoading = false;
     }else{
       this.getAllLoan();
     }
   }
-  
+
+onPageChange(pageNumber: number): void {
+    this.currentPage = pageNumber;
+  } 
 
 }

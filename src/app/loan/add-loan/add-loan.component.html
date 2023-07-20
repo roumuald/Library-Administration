@@ -2,9 +2,9 @@
     <h1>Effectuer un pret</h1>
     <form  [formGroup]="loanForm" (ngSubmit)="saveLoan()">
       <div class="form-group">
-        <label for="">Date d'edition</label>
+        <label for="">Date de fin</label>
         <mat-form-field class="form-control">
-            <input matInput [matDatepicker]="endDatePicker" placeholder="Selectionnez la date de fin" formControlName="endDate">
+            <input matInput [matDatepicker]="endDatePicker" placeholder="Selectionnez la date de fin du pret" formControlName="endDate">
             <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #endDatePicker></mat-datepicker>
           </mat-form-field>

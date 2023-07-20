@@ -14,11 +14,15 @@ export class OpenCustomerLoanComponent implements OnInit{
 
   loans:LoanDto[];
   customer:CustomerDto
+  itemsPerPage: number;
+  currentPage: number;
 
   constructor(private customerService: CustomerService, private loanService: LoanService, 
               private route:ActivatedRoute){}
 
   ngOnInit(): void {
+     this.itemsPerPage=7;
+     this.currentPage=1;
      this.getAllOpenLoanByCustomer()
      this.getOneCustomer()
   }
@@ -50,9 +54,19 @@ export class OpenCustomerLoanComponent implements OnInit{
   onCloseLoan(bookId:number, customerId:number): void{
     this.loanService.closeLoan(bookId, customerId);
   }
+
+  confirmOpenLoan(customerId:number, bookId:number){
+    if(confirm("voulez vous vraiment ouvrir ce pret?")){
+      this.onOpenLoan(customerId, bookId);
+    }
+  }
   
   onOpenLoan(bookId:number, customerId:number): void{
     this.loanService.openLoan(bookId, customerId);
   }
+
+  onPageChange(pageNumber: number): void {
+    this.currentPage = pageNumber;
+  } 
 
 }

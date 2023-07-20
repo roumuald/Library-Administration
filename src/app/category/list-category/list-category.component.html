@@ -12,7 +12,7 @@
                       <a class="nav-link btn" (click)="onClientList()">Clients</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link btn" (click)="onBookList()">Book</a>
+                      <a class="nav-link btn" (click)="onBookList()">Livres</a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link btn" [routerLink]="['/allLoan']">Prets</a>
@@ -43,7 +43,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let category of categorys">
+        <tr *ngFor="let category of categorys | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
           <td>{{category.code}}</td>
           <td>{{category.label}}</td>
           <td><a class="btn btn-success" [routerLink]="['/allBookByCategory', category.id]">Livres</a></td>
@@ -53,4 +53,10 @@
       </tbody>
     </table>
 </div>
-<h1 *ngIf="category" class="text-center">Aucune categorie a afficher</h1>
+<div class="container">
+  <div class="pagination">
+    <button class="btn btn-danger" [disabled]="currentPage === 1" (click)="onPageChange(currentPage - 1)">Précédent</button>
+    <span class="btn btn-success">{{ currentPage }}</span>
+    <button class="btn btn-danger" (click)="onPageChange(currentPage + 1)">Suivant</button>
+  </div>
+</div>

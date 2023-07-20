@@ -4,7 +4,6 @@ import { LoanDto } from '../models/loan.dto';
 import { Observable } from 'rxjs';
 import { LoanStatus } from '../models/loanStatus';
 import { CustomerDto } from '../models/customer.dto';
-import { BooKDto } from '../models/book.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +18,7 @@ export class LoanService {
     const url = `${this.apiUrl}/addLoan/${customerId}/${bookId}`;
     loanDto.startDate = new Date(); // Vous pouvez définir la date de début ici
     loanDto.status = LoanStatus.Open;
-    return this.http.post<LoanDto>(url, loanDto);
+      return this.http.post<LoanDto>(url, loanDto);
   }
 
   getAllLoan(): Observable<LoanDto[]>{
@@ -31,11 +30,6 @@ export class LoanService {
     const url = `${this.apiUrl}/customerByloanId/${loanId}`;
     return this.http.get<CustomerDto>(url);
   }
-
-  // getBookByLoanId(loanId:number): Observable<BooKDto>{
-  //   const url = `${this.apiUrl}/bookByLoanId/${loanId}`;
-  //   return this.http.get<BooKDto>(url);
-  // }
  
   closeLoan(bookId: number, customerId: number): void {
     const url = `${this.apiUrl}/closeLoan/${bookId}/${customerId}`;

@@ -21,7 +21,6 @@ export class AddBookFormComponent implements OnInit{
   bookForm: FormGroup;
   categorys:CategoryDto[];
   book:BooKDto;
-  //currentDate: Date = new Date();
 
   constructor(private bookService:BookService, private router:Router, private categoryService:CategoryService,
      private formBuilder: FormBuilder, public dialog: MatDialog){}
@@ -30,6 +29,7 @@ export class AddBookFormComponent implements OnInit{
     this.getAllCategory();
     this.initialisationFormulaire()
   }
+
   getAllCategory(){
      this.categoryService.getAllCategory().subscribe((categorys)=>{
       this.categorys=categorys;
@@ -44,7 +44,6 @@ export class AddBookFormComponent implements OnInit{
       createdDate: ['',[Validators.required]],
       totalExamp: [''],
       author: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]],
-      isAvailable: ['', [Validators.required]],
       categoryId: ['', Validators.required]
     });
 
@@ -55,8 +54,7 @@ export class AddBookFormComponent implements OnInit{
       this.bookForm.value['title'],
       this.bookForm.value['createdDate'],
       this.bookForm.value['totalExamp'],
-      this.bookForm.value['author'],
-      this.bookForm.value['isAvailable'] 
+      this.bookForm.value['author']
     )
     const categoryId = this.bookForm.value['categoryId'];
     const createdDate = new Date(bookDto.createdDate);

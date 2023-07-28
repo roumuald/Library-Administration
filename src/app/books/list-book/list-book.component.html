@@ -38,8 +38,8 @@
           <th>Titre du livre</th>
           <th>Date de publication</th>
           <th>Nombre d'exemplaire</th>
-          <th>Auteur</th>
           <th>Disponible</th>
+          <th>Auteur</th>
           <th>Categorie associe</th>
           <th>Actions</th>
           <th></th>
@@ -50,8 +50,8 @@
           <td>{{book.title}}</td>
           <td>{{book.createdDate|date:'dd/MM/yyyy'}}</td>
           <td>{{book.totalExamp}}</td>
+          <td>{{book.stock}}</td>
           <td>{{book.author}}</td>
-          <td>{{book.isAvailable}}</td>
           <td>{{book.category.label}}</td>
           <td><a  class="btn btn-primary">Update</a></td>
           <td><a (click)="confirmDelete(book.id)" class="btn btn-danger">Delete</a></td>

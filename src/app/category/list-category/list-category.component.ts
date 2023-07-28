@@ -53,9 +53,9 @@ export class ListCategoryComponent implements OnInit{
     }
   }
 
-  confirmDelete(code:number){
+  confirmDelete(id:number){
     if(confirm("etes-sur de vouloir supprimer cette categorie?")){
-      this.deleteCategory(code);
+      this.deleteCategory(id);
     }
   }
 

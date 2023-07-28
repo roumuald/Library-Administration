@@ -4,7 +4,7 @@ export class CategoryDto{
 
 	 id: number
 	 
-	 bookDto:BooKDto[];
+	 book:BooKDto[];
 
 	 constructor(public code:string, public label:string){}
 }

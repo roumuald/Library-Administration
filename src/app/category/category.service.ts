@@ -42,4 +42,9 @@ export class CategoryService {
     const url = `${this.apiUrl}/getOneCategory/${id}`;
     return this.http.get<CategoryDto>(url);
   }
+
+  updateCategory(categoryId: number, category: CategoryDto): Observable<CategoryDto> {
+    const url = `${this.apiUrl}/updateCategory/${categoryId}`;
+    return this.http.put<CategoryDto>(url, category);
+  }
 }

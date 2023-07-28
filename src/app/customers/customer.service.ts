@@ -23,11 +23,6 @@ export class CustomerService {
     return this.http.get<CustomerDto[]>(url);
   }
 
-  // getAllCustomer():Observable<any>{
-  //   const url = `${this.apiUrl}/allCustomer`;
-  //   return this.http.get<any>(url);
-  // }
-
   getCustomerByEmail(email: string): Observable<CustomerDto> {
     const url = `${this.apiUrl}/customerByEmail/${email}`;
     return this.http.get<CustomerDto>(url);

@@ -64,7 +64,6 @@
             <td>{{loan.book? loan.book.title: ''}}</td>
             <td><a (click)="confirmCloseLoan(loan.book.id, loan.customer.id)" class="btn btn-danger">Cloturer le pret</a></td>
             <td><a (click)="confirmOpenLoan(loan.book.id, loan.customer.id)" class="btn btn-primary">Ouvrir le pret</a></td>
-            <!--<td><a (click)="confirmDelete(customer.id)" class="btn btn-danger">Delete</a></td> -->
           </tr>
         </tbody>
       </table>

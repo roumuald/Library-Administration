@@ -47,8 +47,8 @@
           <td>{{category.code}}</td>
           <td>{{category.label}}</td>
           <td><a class="btn btn-success" [routerLink]="['/allBookByCategory', category.id]">Livres</a></td>
-          <td><a class="btn btn-primary">Update</a></td>
-          <td><a class="btn btn-danger"(click)="confirmDelete(category.id)">Delete</a></td>
+          <td><a class="btn btn-primary" [routerLink]="['/updateCategory', category.id]">Update</a></td>
+          <td><a class="btn btn-danger" (click)="confirmDelete(category.id)">Delete</a></td>
         </tr>
       </tbody>
     </table>

@@ -5,9 +5,14 @@ export class BooKDto {
 
 	 id:number;
 
+	 stock:number;
+	
+	 //isAvailable:boolean
+
 	 loanDto:LoanDto[];
 
 	 category:CategoryDto;
 
-    constructor(public title:string, public createdDate:Date, public totalExamp:number, public author:string, public isAvailable:boolean ) { }
+    constructor(public title:string, public createdDate:Date, public totalExamp:number, 
+		        public author:string) { }
   }

@@ -18,6 +18,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { EmailModalComponent } from './emailSender/email-modal/email-modal.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { FormsModule } from '@angular/forms';
+import { EmailService } from './emailSender/email.service';
 
 
 @NgModule({
@@ -25,7 +29,8 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     AppComponent,
     MenuComponent,
     PageNotFoundComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    EmailModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,13 +42,16 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     AppRoutingModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    ModalModule.forRoot(),
+    FormsModule
   ],
   providers: [
     CustomerService,
     BookService,
     LoanService,
-    CategoryService
+    CategoryService,
+    EmailService
   ],
   bootstrap: [AppComponent]
 })

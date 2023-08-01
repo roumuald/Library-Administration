@@ -44,6 +44,7 @@
           <th>Actions</th>
           <th></th>
           <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody *ngIf="customers">
@@ -56,6 +57,7 @@
           <td><a [routerLink]="['/detailCustomer', customer.id]" class="btn btn-success">Detail</a></td>
           <td><a (click)="updateCustomer(customer)" class="btn btn-primary">Update</a></td>
           <td><a (click)="confirmDelete(customer.id)" class="btn btn-danger">Delete</a></td>
+          <td><a class="btn btn-primary" [routerLink]="['/sendEmail']">Envoyer un e-mail</a></td>
         </tr>
       </tbody>
       <!-- <tbody *ngIf="customer">

@@ -42,5 +42,10 @@ export class CustomerService {
     const url =`${this.apiUrl}/allLoanByCustomer/${customerId}`;
     return this.http.get<LoanDto[]>(url);
   }
+
+  sendEmail(expediteur: string, destinataire: string, sujet: string, contenu: string) {
+    const emailData = { expediteur, destinataire, sujet, contenu };
+    return this.http.post<any>(this.apiUrl, emailData);
+  }
   
 }

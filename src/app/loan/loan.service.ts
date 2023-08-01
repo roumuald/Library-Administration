@@ -58,8 +58,6 @@ export class LoanService {
   getallOpenLoansOfThisCustomer(email:string, status:LoanStatus): Observable<LoanDto[]> {
     const url = `${this.apiUrl}/allOpenLoansOfThisCustomer/${email}/${status}`
     return this.http.get<LoanDto[]>(url);
-  }
-  
-  
+  } 
 }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../customer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerDto } from 'src/app/models/customer.dto';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-list-customer',
@@ -9,6 +10,7 @@ import { CustomerDto } from 'src/app/models/customer.dto';
   styleUrls: ['./list-customer.component.css']
 })
 export class ListCustomerComponent implements OnInit{
+  modalRef: BsModalRef;
 
   customers: CustomerDto[];
   customer: CustomerDto;

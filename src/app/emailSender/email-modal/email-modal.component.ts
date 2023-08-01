@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CustomerService } from 'src/app/customers/customer.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { EmailRequest, EmailService } from '../email.service';
@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './email-modal.component.html',
   styleUrls: ['./email-modal.component.css']
 })
-export class EmailModalComponent {
+export class EmailModalComponent implements OnInit{
 
   expediteur: string;
   destinataire: string;
@@ -17,6 +17,10 @@ export class EmailModalComponent {
   contenu: string;
 
   constructor(private emailService: EmailService, private route:Router){}
+
+  ngOnInit(): void {
+    this.expediteur='roumualdnoubiap@gmail.com'
+  }
 
   envoyerEmail() {
 
@@ -37,19 +41,5 @@ export class EmailModalComponent {
     );
   }
 }
-
-
-
-  // envoyerEmail() {
-  //   this.emailService.envoyerEmail
-  //   (this.expediteur, this.destinataire, this.sujet, this.contenu).subscribe(
-  //       response => {
-  //         console.log('E-mail envoyé avec succès !');
-  //       },
-  //       error => {
-  //         console.error('Une erreur est survenue lors de l\'envoi de l\'e-mail :', error);
-  //       }
-  //     );
-  // }
 
 
